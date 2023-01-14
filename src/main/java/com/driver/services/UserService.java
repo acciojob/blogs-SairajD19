@@ -22,7 +22,7 @@ public class UserService {
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setPassword(user.getPassword());
-        userRepository3.save(newUser);
+        userRepository3.save(user);
     }
 
     public void deleteUser(int userId){
@@ -37,7 +37,7 @@ public class UserService {
             newUser.setFirstName(user.getFirstName());
             newUser.setLastName(user.getLastName());
             newUser.setPassword(user.getPassword());
-            userRepository3.save(newUser);
+            userRepository3.save(user);
         }
         catch (Exception e){
 
