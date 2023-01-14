@@ -60,11 +60,14 @@ public class BlogService {
         //add an image to the blog after creating it
 
         Blog blog = blogRepository1.findById(blogId).get();
-        imageService1.createAndReturn(blog,description,dimensions);
+        Image image = imageService1.createAndReturn(blog,description,dimensions);
+        image.setBlog(blog);
         List<Image> st = blog.getImageList();
-        Image image = new Image();
-        image.setDimensions(dimensions);
-        image.setDescription(description);
+        if(st==null)
+            st = new ArrayList<>();
+//        Image image = new Image();
+//        image.setDimensions(dimensions);
+//        image.setDescription(description);
 
         st.add(image);
         blog.setImageList(st);
@@ -78,8 +81,14 @@ public class BlogService {
         List<Image> st = blog.getImageList();
         for(Image image: st){
             imageService1.deleteImage(image);
-            st.remove(image);
+            //st.remove(image);
         }
+        User user = blog.getUser();
+        List<Blog> blogList = user.getBlogList();
+        blogList.remove(blog);
+        user.setBlogList(blogList);
+
         blogRepository1.delete(blog);
+        userRepository1.save(user);
     }
 }
