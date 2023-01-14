@@ -31,12 +31,17 @@ public class UserService {
     }
 
     public void updateUser(User user){
-        User newUser = userRepository3.findById(user.getId()).get();
-        newUser.setUsername(user.getUsername());
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setPassword(user.getPassword());
-        userRepository3.save(newUser);
+        try {
+            User newUser = userRepository3.findById(user.getId()).get();
+            newUser.setUsername(user.getUsername());
+            newUser.setFirstName(user.getFirstName());
+            newUser.setLastName(user.getLastName());
+            newUser.setPassword(user.getPassword());
+            userRepository3.save(newUser);
+        }
+        catch (Exception e){
+
+        }
     }
 
     public User findUserByUsername(String username){
