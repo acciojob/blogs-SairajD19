@@ -9,7 +9,7 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String descriptions;
+    private String description;
     private String dimensions;
 
     @ManyToOne
@@ -21,8 +21,8 @@ public class Image {
     public Image() {
     }
 
-    public Image(String descriptions, String dimensions) {
-        this.descriptions = descriptions;
+    public Image(String description, String dimensions) {
+        this.description = description;
         this.dimensions = dimensions;
     }
 
@@ -42,12 +42,12 @@ public class Image {
         this.id = id;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(String descriptions) {
+        this.description = descriptions;
     }
 
     public String getDimensions() {

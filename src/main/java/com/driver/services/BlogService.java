@@ -64,7 +64,7 @@ public class BlogService {
         List<Image> st = blog.getImageList();
         Image image = new Image();
         image.setDimensions(dimensions);
-        image.setDescriptions(description);
+        image.setDescription(description);
 
         st.add(image);
         blog.setImageList(st);
