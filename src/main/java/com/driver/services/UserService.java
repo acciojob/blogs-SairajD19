@@ -17,11 +17,7 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
-        User newUser = new User();
-        newUser.setUsername(user.getUsername());
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setPassword(user.getPassword());
+
         userRepository3.save(user);
     }
 
@@ -31,17 +27,7 @@ public class UserService {
     }
 
     public void updateUser(User user){
-        try {
-            User newUser = userRepository3.findById(user.getId()).get();
-            newUser.setUsername(user.getUsername());
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
-            newUser.setPassword(user.getPassword());
-            userRepository3.save(user);
-        }
-        catch (Exception e){
-
-        }
+        userRepository3.save(user);
     }
 
     public User findUserByUsername(String username){
