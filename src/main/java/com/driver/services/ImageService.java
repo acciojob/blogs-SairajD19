@@ -31,11 +31,12 @@ public class ImageService {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
         try{
-            String [] arr = imageRepository2.findById(image.getId()).get().getDimensions().split("X");
+            Image image1 = imageRepository2.findById(image.getId()).get();
+            String [] arr = image1.getDimensions().split("X");
             int total = Integer.parseInt(arr[0]) * Integer.parseInt(arr[1]);
             String [] arr2 = screenDimensions.split("X");
             int fit = Integer.parseInt(arr2[0]) * Integer.parseInt(arr2[1]);
-            if(total/fit >0){
+            if(total>fit){
                 return total/fit;
             }
         }catch (Exception e) {
