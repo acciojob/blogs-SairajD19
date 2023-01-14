@@ -39,7 +39,7 @@ public class BlogService {
         blog.setContent(content);
         blog.setUser(userRepository1.findById(userId).get());
         User user = userRepository1.findById(userId).get();
-        List<Blog> st = user.getListOfBlogs();
+        List<Blog> st = user.getBlogList();
         st.add(blog);
         userRepository1.save(user);
         blogRepository1.save(blog);
@@ -61,13 +61,13 @@ public class BlogService {
 
         Blog blog = blogRepository1.findById(blogId).get();
         imageService1.createAndReturn(blog,description,dimensions);
-        List<Image> st = blog.getListOfImage();
+        List<Image> st = blog.getImageList();
         Image image = new Image();
-        image.setDimension(dimensions);
-        image.setDescription(description);
+        image.setDimensions(dimensions);
+        image.setDescriptions(description);
 
         st.add(image);
-        blog.setListOfImage(st);
+        blog.setImageList(st);
         blogRepository1.save(blog);
 
     }
@@ -75,7 +75,7 @@ public class BlogService {
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
         Blog blog = blogRepository1.findById(blogId).get();
-        List<Image> st = blog.getListOfImage();
+        List<Image> st = blog.getImageList();
         for(Image image: st){
             imageService1.deleteImage(image);
             st.remove(image);
